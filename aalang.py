@@ -1,10 +1,10 @@
 
 dictionary = {
-    "print" : "PRINT",
-    "(" : "BRACKET_START",
-    ")" : "BRACKET_CLOSE",
-    '"'  : "STR",
-    ';' : "ENDLINE"
+    "print" : "PRINT\n",
+    "(" : "BRACKET_START\n",
+    ")" : "BRACKET_CLOSE\n",
+    '"'  : "STR\n",
+    ';' : "ENDLINE\n"
 }
 
 
@@ -23,16 +23,24 @@ for x in code:
 
     lineArrayStriped = list((x.lower()))
     line = ""
+    currentFunc = ""
     for newCharecter in lineArrayStriped:
+        
         line = line+newCharecter
         StrCurrentLine = False
         if line == "print" and inString == False:
             compiledCode.append(dictionary["print"])
             compiledCode.append("\n")
+            currentFunc = dictionary["print"]
+        if currentFunc == dictionary["print"] and newCharecter == "(":
+            pass
+        else:
+            print(" '(' not found")
+                
 
         
 
-
+        """
         if newCharecter == '"' and inString == True and StrCurrentLine == False:
             #print("start")
             compiledCode.append("\n") 
@@ -63,7 +71,7 @@ for x in code:
             compiledCode.append(dictionary[";"])
             compiledCode.append("\n")
 
-
+    """
 
     """
     if lineArray[:5] == list("print"):
