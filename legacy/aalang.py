@@ -24,10 +24,12 @@ for x in code:
     lineArrayStriped = list((x.lower()))
     line = ""
     currentFunc = ""
+    lineToPrint = ""
     for newCharecter in lineArrayStriped:
         
         line = line+newCharecter
         StrCurrentLine = False
+        
         if line == "print" and inString == False:
             compiledCode.append(dictionary["print"])
             compiledCode.append("\n")
@@ -35,9 +37,18 @@ for x in code:
         if currentFunc == dictionary["print"] and newCharecter == "(":
             pass
         else:
-            print(" '(' not found")
-                
-
+            pass
+        if currentFunc == dictionary["print"] and newCharecter ==  '"' and inString == False:
+            inString = True
+            StrCurrentLine = True
+        elif currentFunc == dictionary["print"] and newCharecter ==  '"' and inString == True:
+            inString = False
+            
+        if inString == True and StrCurrentLine == False:
+            lineToPrint = lineToPrint+newCharecter
+            
+        if newCharecter == ")" and currentFunc == dictionary["print"]:
+            print(lineToPrint)
         
 
         """
