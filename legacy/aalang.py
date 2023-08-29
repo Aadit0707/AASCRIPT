@@ -21,7 +21,7 @@ for x in code:
     lineArray = list((x.lower()))
     
 
-    lineArrayStriped = list((x.lower()))
+    lineArrayStriped = list((x))
     line = ""
     currentFunc = ""
     lineToPrint = ""
