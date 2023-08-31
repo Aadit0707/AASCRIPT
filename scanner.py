@@ -1,4 +1,6 @@
 import _token as tkn
+import dictionary
+
 
 class scanner:
     def __init__(self,_file):
@@ -22,13 +24,21 @@ class scanner:
         """
 
 
-        self.Tokens = {
+        self.Tokens = dictionary.Tokens
+
+        # this is what dictionary.Tokens looks like (yet)
+        """
+        Tokens = { 
             "(" : tkn._Token_("LAPAREN","SPC_CHARECTER"),
             ")" : tkn._Token_("RPAREN","SPC_CHARECTER"),
             '"'  : tkn._Token_("STR_SIGN","SPC_CHARECTER"),
             ';' : "ENDLINE",
-            "print" : tkn._Token_("PRINT","FUNC")
-        }
+            "print" : tkn._Token_("PRINT","PREFUNC"),
+            "if" : tkn._Token_("IF","KEYWORD")
+            }
+
+
+        """
         #DEFINING ALL THE TOKENS
         
 
@@ -77,6 +87,7 @@ class scanner:
                 
                 if line == x :
                     #print(line)
+                
                     TokenArray.append(self.Tokens.get(x)) #get the token that matched an append it
 
 
@@ -91,7 +102,7 @@ class scanner:
                         inString = False
                         TokenArray.append(tkn._Token_("STRING_VAL","VALUE",_value = string)) # added the string to array
                         string = "" #resets string for reuse
-                    else:
+                    elif newCharecter != '"' and inString == False:
                         TokenArray.append(self.Tokens.get(x))
                 
                     

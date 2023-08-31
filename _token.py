@@ -8,3 +8,8 @@ class _Token_:
         print( "Token Type : " + self.type )
         if self.value != None:
             print("Token Value : " + self.value)
+
+
+def printTokenArray(TokenArray):
+    for n in TokenArray:
+        n.printToken()
